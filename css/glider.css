@@ -1,0 +1,176 @@
+.glider {
+    --gl-width: 150px;
+    --gl-height: 220px;
+    --gl-loading-duration: 3s;
+    --gl-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+.glider.perspective-full {
+    height: 100vh;
+    width: 100vw;
+}
+.glider-list-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+}
+.glider-list-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.glider-list-item:nth-child(1) {
+    z-index: 1;
+}
+.glider-thumbnails-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    width: max-content;
+    z-index: 100;
+    overflow: hidden;
+}
+.glider-thumbnail {
+    flex-shrink: 0;
+    position: relative;
+    width: var(--gl-width);
+    height: var(--gl-height);
+}
+.glider-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.glider-thumbnail-description {
+    display:grid;
+    gap: 0.25rem;
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    font-weight: 300;
+}
+.glider-thumbnail-name {
+    font-weight: 500;
+}
+.glider-thumbnail-text {
+    color: #a5bdb6;
+}
+.glider-arrows {
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 100;
+    width: 300px;
+    max-width: 30%;
+}
+.glider-arrows button {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    transition: .5s;
+}
+.glider-arrows button:hover {
+    background-color: #fff;
+    color: #000;
+}
+.glider-loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 0;
+    height: 3px;
+    background-color: #f1683a;
+}
+.glider.next .glider-loader,
+.glider.prev .glider-loader {
+    animation: gliderLoading var(--gl-loading-duration) linear 1 forwards;
+}
+@keyframes gliderLoading {
+    from { width: 100% }
+    to { width: 0 }
+}
+.glider.next .glider-list .glider-list-item:nth-child(1) img {
+    width: var(--gl-width);
+    height: var(--gl-height);
+    position: absolute;
+    bottom: var(--gl-bottom);
+    left: 50%;
+    border-radius: 30px;
+    animation: gliderShowImage .5s linear 1 forwards;
+}
+@keyframes gliderShowImage {
+    to {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+.glider.next .glider-thumbnails-wrapper .glider-thumbnail:nth-last-child(1) {
+    overflow: hidden;
+    animation: gliderShowThumbnail .5s linear 1 forwards;
+}
+.glider.prev .glider-list .glider-list-item img {
+    z-index: 100;
+}
+@keyframes gliderShowThumbnail {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+}
+.glider.next .glider-thumbnails-wrapper {
+    animation: gliderEffectNext .5s linear 1 forwards;
+}
+@keyframes gliderEffectNext {
+    from {
+        transform: translateX(var(--gl-width));
+    }
+}
+.glider.prev .glider-list .glider-list-item:nth-child(2) {
+    z-index: 2;
+}
+.glider.prev .glider-list .glider-list-item:nth-child(2) img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: gliderOutFrame .5s linear 1 forwards;
+}
+@keyframes gliderOutFrame {
+    to {
+        width: var(--gl-width);
+        height: var(--gl-height);
+        bottom: var(--gl-bottom);
+        left: 50%;
+        border-radius: 20px;
+    }
+}
+.glider.prev .glider-thumbnails-wrapper .glider-thumbnail:nth-child(1) {
+    overflow: hidden;
+    opacity: 0;
+    animation: gliderShowThumbnail .5s linear 1 forwards;
+}
+.glider.next .glider-arrows button,
+.glider.prev .glider-arrows button {
+    pointer-events: none;
+}

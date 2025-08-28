@@ -1,0 +1,88 @@
+@import "base.css";
+@import "component.css";
+@import "glider.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+}
+.nav-links-container {
+    position: relative;
+    z-index: 100;
+    height: 50px;
+}
+.nav-links-container > a:hover {
+    color: var(--base-color--secondary-3);
+}
+.glider {
+    margin-top: -50px;
+}
+.author-card {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+    width: 71.25rem;
+    max-width: 80%;
+    padding-right: 30%;
+    text-shadow: 0 5px 10px #0004;
+}
+.author-card-name {
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.author-card-title, .author-card-topic {
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+.author-card-topic {
+    color: var(--c-color-special);
+}
+.author-card-description {
+    text-wrap: balance;
+}
+.author-card-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 8.125rem);
+    grid-template-rows: 2.5rem;
+    gap: 5px;
+    margin-top: 1.25rem;
+    font-size: 0;
+}
+.author-card-buttons .button {
+    width: 100%;
+    height: 100%;
+}
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-name,
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-title,
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-topic,
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-description,
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-buttons
+{
+    opacity: 0;
+    transform: translateY(3.125rem);
+    filter: blur(20px);
+    animation: c-reveal .5s 1s linear 1 forwards;
+}
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-title {
+    animation-delay: 1.2s!important;
+}
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-topic {
+    animation-delay: 1.4s!important;
+}
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-description {
+    animation-delay: 1.6s!important;
+}
+.glider .glider-list .glider-list-item:nth-child(1) .author-card .author-card-buttons {
+    animation-delay: 1.8s!important;
+}
+.glider.prev .glider-list .glider-list-item:nth-child(2) .author-card .author-card-name,
+.glider.prev .glider-list .glider-list-item:nth-child(2) .author-card .author-card-title,
+.glider.prev .glider-list .glider-list-item:nth-child(2) .author-card .author-card-topic,
+.glider.prev .glider-list .glider-list-item:nth-child(2) .author-card .author-card-description,
+.glider.prev .glider-list .glider-list-item:nth-child(2) .author-card .author-card-buttons
+{
+    animation: c-hide 1.5s linear 1 forwards!important;
+}
