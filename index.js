@@ -5,8 +5,8 @@ import {Glider} from "./glider.js";
 
     document.addEventListener('DOMContentLoaded', function () {
 
+        console.log("happy development");
         const glider = new Glider(true, 5000);
-
 
     });
 })();
